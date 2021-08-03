@@ -9,12 +9,6 @@ from os  import getenv
 import psycopg2
 
 
-DB_NAME = "ztlmlrvh"
-DB_USER = "ztlmlrvh"
-DB_PASSWORD ="PqOzyyx3rBaU_CdWJpXnmib1QazLUdum"
-DB_HOST = "chunee.db.elephantsql.com"
-DB_PORT = "5432"
-
 SQL_STATEMENT = """
     CREATE TABLE IF NOT EXISTS device_interface_config
     (
@@ -31,11 +25,8 @@ def create_connection():
     """
     Creates a context manager to persist connection pooling and cursor, Returns a db connection object.
     """
-    # conn = psycopg2.connect(database=getenv('DB_NAME'), user=getenv('DB_USER'),
-    #                         password=getenv('DB_PASSWORD'), port=getenv('DB_PORT'), host=getenv('DB_HOST'))
-
-    conn = psycopg2.connect( database=DB_NAME, user=DB_USER,
-                             password=DB_PASSWORD, port=DB_PORT, host=DB_HOST )
+    conn = psycopg2.connect(database=getenv('DB_NAME'), user=getenv('DB_USER'),
+                            password=getenv('DB_PASSWORD'), port=getenv('DB_PORT'), host=getenv('DB_HOST'))
     try:
         yield conn
     finally:
